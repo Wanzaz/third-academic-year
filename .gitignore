@@ -1,5 +1,5 @@
 # Files on MacOS
-.DS_Store
+*.DS_Store
 
 # Prerequisites
 *.d
