@@ -26,4 +26,6 @@
 - (*x).vek = 200; ---- x->vek = 200; - stejne
 - L hodnota - *px += 5;
 - R/P hodnota - &(1 + 2) - zapis nema smysl
+- *a = odkazuje na misto s hodnotou - promenna s typem pointer
+- &x = 10; - nejde protoze nemuze priradi adrese desitku 
 
