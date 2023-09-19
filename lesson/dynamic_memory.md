@@ -11,7 +11,7 @@
     * muzeme alokovat mnohem vetsi prostor
     * operacni system nam rekne jestli muze pridelit prostor nebo ne
 - int * p = malloc(kolikB) 
-- void *malloc(size_t velikost)
+- void *malloc(size_t velikost) - argument fuknce -> kolik bytu
     * #include <stdlib.h>
     * vzdy pouzivejte sizeof!!!
     * vraci adresu nebo NULL
