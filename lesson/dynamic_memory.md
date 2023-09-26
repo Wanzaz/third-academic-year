@@ -4,8 +4,8 @@
 - kod programu + promenne (jsou v .exe souboru)
 
 ## Model operacni pameti
-1. **Kodova oblast** - kod programu
-2. **Datova oblast** - konstanty, globalni a staticke promenne
+1. **Kodova oblast** - kod programu (soucasti exe)
+2. **Datova oblast** - konstanty, globalni a staticke promenne (soucasti exe)
 3. **Zasobnik** - stack - lokalni promenne a parametry funkci
 4. **Hromada** - heap - o prideleni je nutne pozadat operacni system
     * muzeme alokovat mnohem vetsi prostor
