@@ -15,8 +15,8 @@
 - variable pointer = contains address
 - & = reference operator = find out address
 - * = dereference operator = contains address and look where the pointer goes
-- Tosoba a; - pamet si vyhradila byty
-- Tosoba * x;  - ma v sobe adresu (ale jeste niceho)
+- Tosoba a; - pamet si vyhradila bajty
+- Tosoba * x;  - ma v sobe adresu (ale jeste niceho) - smeti
 - x = NULL; - potreba udelat, abych byl to schopen testovat
 - x = &a; - ma v sobe adresu a
 - a.vek = 10;
