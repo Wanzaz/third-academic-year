@@ -1,36 +1,21 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <stdlib.h>
 
 void* myTurn(void * arg)
 {
-    while (1) {
-        sleep(1);
-        printf("My Turn!\n");
-    }
-
-    return NULL;
-}
-
-void* myTurn2(void * arg)
-{
+    int *iptr = (int *)malloc(sizeof(int));
     for (int i = 0; i < 8; i++) {
         sleep(1);
-        printf("My Turn! %d\n", i);
+        printf("My Turn! %d %d\n", i, *iptr);
+        (*iptr)++;
     }
 
-    return NULL;
+    return iptr;
 }
 
 void yourTurn()
-{
-    while (1) {
-        sleep(1);
-        printf("Your Turn!\n");
-    }
-}
-
-void yourTurn2()
 {
     for (int i = 0; i < 3; i++) {
         sleep(1);
@@ -41,14 +26,17 @@ void yourTurn2()
 int main(int argc, char *argv[])
 {
     pthread_t newThread;
+    int *result;
 
-    pthread_create(&newThread, NULL, myTurn2, NULL);
+    pthread_create(&newThread, NULL, myTurn, NULL);
     /* myTurn(); */
-    yourTurn2(); // It won't be executed because it is only one process
+    yourTurn(); // It won't be executed because it is only one process
                 // so there has to be the pthreads used to create another process
 
-    // wait until the thread is done
-    pthread_join(newThread, NULL);
+    // wait until the thread is done before we exit
+    pthread_join(newThread, (void *)&result);
+    printf("thread's done: *result=%d\n", *result);
+
 
     return 0;
 }
