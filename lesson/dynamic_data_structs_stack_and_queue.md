@@ -48,12 +48,14 @@ typedef struct {
         * z->vrchol = pom->dalsi
         * free(pom)
     3. Top - vrati hodnotu vrcholu
+- nepoustime uzivatele k vrchnimu prvku (Tprvek) - jinak si to sami posereme
 
-## Fronta (Queue) - FIFO (First In First Out)
+## Fronta (Queue) - FIFO (First In First Out) - Buffer
 - k cemu slouzi: aby se zachovalo poradi prichozich
 - jednosmerne vazany seznam prvku
 - Prvni prvek (**front**) - nejstarsi (prvne pridany)
 - Posledni prvek (**back**) - posledne pridany
+- POZOR!!! - sekvencni struktury musime prochazet postupne
 
 ```c
 typedef struct {
@@ -65,4 +67,16 @@ typedef struct {
 
 ## Fronta - operace
 - enqueue = vlozi hodnotu na konec fronty
+```
+   1. f->posledni->dalsi
+    = novy
+
+   2. f->posledni = novy
+```
 - dequeue = 
+
+## Fronta - uloha
+- servisni informace - kolik prvku jsme tam uz vlozili
+- enqueue +1
+- dequeue -1
+- smazeme nejstarsi a vlozime novy
