@@ -65,7 +65,9 @@ typedef struct {
 } Tzasobnik;
 ```
 
+
 ## Fronta - operace
+- Doporuceni: nesmime si odriznout vetev
 - enqueue = vlozi hodnotu na konec fronty
 ```
    1. f->posledni->dalsi
@@ -80,3 +82,18 @@ typedef struct {
 - enqueue +1
 - dequeue -1
 - smazeme nejstarsi a vlozime novy
+```c
+neng(q, data, n)
+{
+    if (n >= q->delka) 
+    { deq(q); }
+    enq(q, data);
+}
+```
+
+# Linearni seznam
+- pri velkem mnozstvi prvku je to neobhajitelne (neda se pouzit)
+
+# Fronta v poli
+- **Kruhova indexace pomoci operace modulo**
+
