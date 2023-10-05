@@ -18,7 +18,6 @@
 
 ## Odvozeni hlavicky funkce z parametru
 ```c
-
 char fce(float a, long * b);
 
 long y = 10;
@@ -30,5 +29,14 @@ char x = fce(5.3, &y);
 
 ## P - hodnota
 - neni to promenna
+
+## Feedback na testy - caste chyby
+- void = procedura
+- ```void fce(float a, float *a);``` - blbost protoze se dva parametry jmenuji stejne
+- ```long * pole[]``` = pole ukazatelu na long
+- ```long pole[]``` = staticke pole na zasobniku, lokalni pole typu pole
+- ```long * pole``` = typu ukazatel, pribuzna poli
+- ```long * pole = malloc()``` = typu ukazatel, pribuzna poli
+- ```pole[i]``` = hvezdicku nahrazuji zavorky
 
 
