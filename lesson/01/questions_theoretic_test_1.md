@@ -39,4 +39,8 @@ char x = fce(5.3, &y);
 - ```long * pole = malloc()``` = typu ukazatel, pribuzna poli
 - ```pole[i]``` = hvezdicku nahrazuji zavorky
 
+## Zajimavost
+- ```typedef struct _prvek Tprvek;``` 
+    - **_prvek** = _ je volitelne jestli to clovek chce psat nebo ne
+            * privatni skryty datovy typ, ktery nepouzijeme (proto piseme _)
 
