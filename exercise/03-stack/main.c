@@ -1,35 +1,103 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "stack.h"
 
-int main()
+enum eChyby { EOK, ENECEKANAZAVIRACI, ENEZAVRENA, EPAMET, ENEZNAMA };
+
+const char * CHYBY[] = {
+    [EOK] = "Vsechno je v poradku.",
+    [ENECEKANAZAVIRACI] = "Narazil jsem na necekanou zaviraci zavorku",
+    [ENEZAVRENA] = "Narazil jsem na neuzavrenou zavorku",
+    [EPAMET] = "Chyba alokace pameti",
+    [ENEZNAMA] = "Necekana chyba! Utikej pryc!!",
+};
+
+void hlaseni(int kod)
 {
-    /* FILE * f1 = fopen("cviceni-pr5-03-data.html", "r"); */
-    /* FILE * f2 = fopen("cviceni-pr5-03-data2.html", "r"); */
+    if (kod < EOK || kod > ENEZNAMA) {
+        kod = ENEZNAMA;
+    }
 
-    Tzasobnik * z = zasInit();
+    printf("%s\n", CHYBY[kod]);
+}
 
-    if (z == NULL) { 
-        printf("ERROR: Nezvladlo incializovat zasobnik");
-        return 0; 
-    };
+bool jeToOteviraciZavorka(char znak)
+{
+    return znak == '(' ||
+           znak == '[' ||
+           znak == '{' ||
+           znak == '<';
+}
 
-    zasPush(z, 'A');
-    zasPush(z, 'B');
-    zasPush(z, 'C');
+bool jeToZaviraciZavorka(char znak)
+{
+    return znak == ')' ||
+           znak == ']' ||
+           znak == '}' ||
+           znak == '>';
+}
 
-    while (!zasIsEmpty(z)) {
-        char prvek;
-        if (zasPop(z, &prvek)) {
-            printf("Odstranen prvek: %c\n", prvek);
-        } else {
-            printf("Zasobnik je prazdny, nemuzeme odstranit prvky.\n");
+int oteviraci2zaviraci(int znak)
+{
+    if (znak == '(') return ')';
+    if (znak == '[') return ']';
+    if (znak == '{') return '}';
+    if (znak == '<') return '>';
+
+    return znak;
+}
+
+
+int testujZavorky(FILE *f, Tzasobnik *z)
+{
+    char znak;
+    while (fscanf(f, "%c", &znak) == 1) {
+        if (jeToOteviraciZavorka(znak)) {
+            if(!zasPush(z, znak)) {
+                return EPAMET;
+            }
+        } else if (jeToZaviraciZavorka(znak)) {
+            char oteviraci = z->vrchol->hodnota;
+            char ocekavanyZaviraci = oteviraci2zaviraci(oteviraci);
+
+            if (zasIsEmpty(z) || znak != ocekavanyZaviraci) {
+                return ENEZAVRENA; // Unmatched closing bracket
+            } else {
+                zasPop(z, &znak);
+            }
         }
     }
 
-    zasFree(z);
+    if (!zasIsEmpty(z)) {
+        return ENECEKANAZAVIRACI; // Unmatched opening bracket
+    }
+
+    return EOK;
+}
+
+int zavorky(FILE *in)
+{
+    Tzasobnik *z = zasInit();
 
 
-    /* fclose(f1); */
-    /* fclose(f2); */
+    int vysledek = testujZavorky(in, z);
+
+    free(z);
+
+    return vysledek;
+}
+
+
+int main()
+{
+    FILE *in = stdin;
+    /* FILE *in = fopen("cviceni-pr5-03-data1.html", "r"); */
+    /* FILE *in = fopen("cviceni-pr5-03-data2.html", "r"); */
+
+    int vysledek = zavorky(in);
+
+    hlaseni(vysledek);
+
+    return 0;
 }
