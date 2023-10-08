@@ -48,21 +48,23 @@ int oteviraci2zaviraci(int znak)
     return znak;
 }
 
-
 int testujZavorky(FILE *f, Tzasobnik *z)
 {
     char znak;
     while (fscanf(f, "%c", &znak) == 1) {
         if (jeToOteviraciZavorka(znak)) {
-            if(!zasPush(z, znak)) {
+            if (!zasPush(z, znak)) {
                 return EPAMET;
             }
         } else if (jeToZaviraciZavorka(znak)) {
+            if (zasIsEmpty(z)) {
+                return ENECEKANAZAVIRACI; // Unmatched closing bracket
+            }
             char oteviraci = z->vrchol->hodnota;
             char ocekavanyZaviraci = oteviraci2zaviraci(oteviraci);
 
-            if (zasIsEmpty(z) || znak != ocekavanyZaviraci) {
-                return ENEZAVRENA; // Unmatched closing bracket
+            if (znak != ocekavanyZaviraci) {
+                return ENECEKANAZAVIRACI; // Unmatched closing bracket
             } else {
                 zasPop(z, &znak);
             }
@@ -70,7 +72,7 @@ int testujZavorky(FILE *f, Tzasobnik *z)
     }
 
     if (!zasIsEmpty(z)) {
-        return ENECEKANAZAVIRACI; // Unmatched opening bracket
+        return ENEZAVRENA; // Unmatched opening bracket
     }
 
     return EOK;
