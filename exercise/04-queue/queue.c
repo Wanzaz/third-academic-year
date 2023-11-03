@@ -28,13 +28,13 @@ bool enqueue(TQueue *q, float data)
     new->value = data;
     new->next = NULL;
 
-    q->last->next = new;
-    q->last = new;
-
     if (q->first == NULL) {
         q->first = new;
+        q->last = new;
     }
-    q->length++;
+    q->last->next = new;
+    q->last = new;
+    (q->length)++;
 
     return true;
 }
@@ -54,7 +54,7 @@ bool dequeue(TQueue *q, float *d)
     if (q->first == NULL) {
         q->last = NULL;
     }
-    q->length--;
+    (q->length)--;
 
     return true;
 }
@@ -72,9 +72,9 @@ bool limitedEnqueue(TQueue* q, float value)
 void printQueue(TQueue* q)
 {
     float element;
-    for (int i = 0; i < q->length; i++) {
+    while (q->first != NULL) {
         dequeue(q, &element);
-        printf("%f\n", element);
+        printf("%.3f\n", element);
     }
 }
 

@@ -16,7 +16,8 @@ TQueue* last(FILE* f, int n)
 
 int main(void)
 {
-    TQueue* q = last(stdin, 40);
+    FILE *file = fopen("data10k.txt", "r");
+    TQueue* q = last(file, 40);
     printQueue(q);
     destructQueue(q);
 }
