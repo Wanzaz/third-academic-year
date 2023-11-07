@@ -73,3 +73,10 @@ void postOrder(Tuzel *u) {
 - **preo**: 4, 2, 1, 3, 7, 5, 6, 8
 - **posto**: 1, 3, 2, 6, 5, 8, 7, 4
 
+
+## Operace
+- Zruseni stromu
+- Vlozeni klice
+    - nejdrive vyhledat pak vlozit
+    - vkladame na dno
+    - duplicitni klice neakceptujeme
