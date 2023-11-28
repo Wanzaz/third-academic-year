@@ -80,3 +80,69 @@ void postOrder(Tuzel *u) {
     - nejdrive vyhledat pak vlozit
     - vkladame na dno
     - duplicitni klice neakceptujeme
+
+# Rekurzivni definice stromu
+- bud to pradny strom (NULL)
+- nebo je to korenovy prvek obsahujici odkazy na levy a pravy podstrom
+
+# Klicova vlastnost stromu
+- V leve casti stromu mensi prvky
+- V prave casti stromu vetsi prvky
+
+Otazky
+- Deklaruj datovy typ pro realizaci binarniho vyhledavaciho stromu, v nemz budou klic i data textove retezce
+```c
+typedef struct _klic Tklic;
+typedef struct _klic {
+}
+
+typedef struct _uzel Tuzel;
+struct _uzel {
+    char klic[20];
+    char data[20];
+    Tuzel *levy;
+    Tuzel *pravy;
+};
+
+typedef struct _strom Tstrom;
+struct _uzel {
+    Tuzel *koren;
+    int vaha;
+};
+
+```
+
+- Napis funkci: klic bude retezek, datova vyska je float, osoba - napis prumernou vysku osoby
+```c
+
+int pocet(Tuzel* uzel)
+{
+    if (u == NULL) {
+        return 0;
+    }
+
+    return 1 +
+        pocet(uzel->levy) +
+        pocet(uzel->pravy);
+}
+
+float soucet(Tuzel* uzel)
+{
+    if (u == NULL) {
+        return 0.0;
+    }
+
+    return uzel->vyska +
+           soucet(uzel->levy) +
+           soucet(uzel->pravy);
+}
+
+float prumer (Tstrom* s)
+{
+    return soucet(s->koren)/pocet(s-koren);
+}
+
+```
+
+
+
