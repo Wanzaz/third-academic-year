@@ -95,3 +95,24 @@ bool zasPush(Tzasobnik *z, int *data)
     return true
 }
 ```
+
+5. Mas na vstupu znaky a vypis je opacne
+```c
+void vypisOpacne(FILE *vstup) {
+    Tz* z = zasInit();
+    if (z == NULL) {
+        return;
+    }
+
+    char pom;
+    while(fscanf(vstup, "%c", &pom) == 1) {
+        zasPush(z, pom);
+    }
+
+    while(zasPop(z, &pom)) {
+        printf("%c\n", pom);
+    }
+
+    zasFree(z);
+}
+```
