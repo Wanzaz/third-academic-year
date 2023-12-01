@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1701422292 source:c:\users\pazou19117\downloads\bvstrom-cviko\main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<ctype.h>
+	"strom.h"
+
+1701422292 c:\users\pazou19117\downloads\bvstrom-cviko\gvid.h
+
+1701422292 c:\users\pazou19117\downloads\bvstrom-cviko\strom.h
+	<stdbool.h>
+
+1701425855 source:c:\users\pazou19117\downloads\bvstrom-cviko\strom.c
+	<stdio.h>
+	<stdlib.h>
+	"strom.h"
+
