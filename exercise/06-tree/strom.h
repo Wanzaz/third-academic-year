@@ -27,8 +27,8 @@ typedef struct _strom Tstrom;
 
 struct _strom
 {
-  Tuzel* koren;
-  int vaha;
+    Tuzel* koren;
+    int vaha;
 };
 
 
