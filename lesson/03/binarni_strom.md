@@ -21,6 +21,7 @@
 - **AVL** algoritmus - vyvazovane stromy
 - (Tnode **node) - predavat ukazatel odkazem
 - u rekurzivnich funkcich je parametrem **uzel** a ne cela struktura stromu!!!
+- **DELKA STROMU** = Delka nejdelsi cesty od korene k listu
 
 ## Pruchody stromu
 - kdyz menime neco ->  Tuzel** uzel

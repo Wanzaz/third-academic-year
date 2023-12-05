@@ -15,3 +15,6 @@
 - Matematicka struktura
 - Usporadana trojice G = (H, U, f)
 - E je podmnozina {{u, v}| u, v nalezi U}
+
+## Orientovany graf
+- maji definovany smer
