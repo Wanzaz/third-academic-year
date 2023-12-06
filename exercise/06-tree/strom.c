@@ -104,17 +104,17 @@ bool bvsVloz(Tstrom *strom, int klic, float data)
 }
 
 /** Zruší zadaný uzel. */
-void _zrusUzel(Tuzel **uzel)
+bool _zrusUzel(Tuzel **uzel)
 {
     Tuzel *pom = *uzel;
     
     if (pom == NULL) { return false; }
-        
-            if (pom->levy == NULL) {
-                *uzel = pom->pravy;
-                    free(pom);
-                    return true;
-            }
+
+    if (pom->levy == NULL) {
+        *uzel = pom->pravy;
+            free(pom);
+            return true;
+    }
 
     if (pom->pravy == NULL) {
         *uzel = pom->levy;
@@ -124,7 +124,7 @@ void _zrusUzel(Tuzel **uzel)
 
     if (pom->levy->pravy == NULL) {
         pom->klic = pom->levy->klic;
-            return _bvsZrus(&pom->levy);
+            return _zrusUzel(&pom->levy);
     }
 
     pom = pom->levy;
