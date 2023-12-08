@@ -16,7 +16,7 @@
                      // #include <math.h>    // funkce z matematicke knihovny
                      // #include <float.h>   // konstanty pro racionalni typy DBL_MAX, DBL_DIG, ...
                      // #include <limits.h>  // konstanty pro celociselne typy INT_MAX, INT_MIN, ...
-                     // #include <time.h>    // funkce time a dalsi pro praci s casem
+ #include <time.h>    // funkce time a dalsi pro praci s casem
 
 
                      // natažení rozhraní modulu strom
@@ -25,38 +25,49 @@
 
 void operace1(Tstrom *strom)
 {
-    //Úkol1: Realizuj v modulu funkci, která zjistí výšku stromu
-    //a vyzkoušej ji tady.
-    
-        // automaticky vlozit 10 uzlu zdrzuje - FINTAAAAA
-        printf("Tato operace jeste nebyla vytvorena.\n");
+    // automaticky vlozit 10 uzlu zdrzuje - FINTAAAAA
+    srand(time(NULL));
+    for (int i = 10; i > 0; i--) {
+        bvsVloz(strom, rand() % 100, i + 0.5);
+    }
 }
 
 void operace2(Tstrom *strom)
 {
-    //Úkol 2: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
-    //preorder a vyzkoušej ji tady.
-    //Na každý řádek vypisuj dvojici klíč-data.
-    printf("Tato operace jeste nebyla vytvorena.\n");
+    //Úkol1: Realizuj v modulu funkci, která zjistí výšku stromu
+    //a vyzkoušej ji tady.
+    if (bvsVaha(strom) == bvsPruchodVaha(strom)) {
+        printf("\nVyska stromu: %d\n", bvsVaha(strom));
+    } else {
+        printf("Neco se pokazilo. Utikej!!!\n");
+    }
 }
 
 void operace3(Tstrom *strom)
 {
-    //Úkol 3: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
-    //postorder a vyzkoušej ji tady.
+    //Úkol 2: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
+    //preorder a vyzkoušej ji tady.
     //Na každý řádek vypisuj dvojici klíč-data.
-    printf("Tato operace jeste nebyla vytvorena.\n");
+    vypisPreOrder(strom);
 }
 
 void operace4(Tstrom *strom)
 {
-    //Úkol 4: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
-    //inorder a vyzkoušej ji tady.
+    //Úkol 3: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
+    //postorder a vyzkoušej ji tady.
     //Na každý řádek vypisuj dvojici klíč-data.
-    printf("Tato operace jeste nebyla vytvorena.\n");
+    vypisPostOrder(strom);
 }
 
 void operace5(Tstrom *strom)
+{
+    //Úkol 4: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
+    //inorder a vyzkoušej ji tady.
+    //Na každý řádek vypisuj dvojici klíč-data.
+    vypisInOrder(strom);
+}
+
+void operace6(Tstrom *strom)
 {
     //Úkol 5: Realizuj v modulu funkci, která zjistí, zda je strom vyvážený.
     //Úkol 6: Tady (mimo modul) napiš algoritmus, který strom vyváží.
@@ -69,6 +80,17 @@ void operace5(Tstrom *strom)
     printf("Tato operace jeste nebyla vytvorena.\n");
 }
 
+
+bool operace7(Tstrom *strom, FILE *in)
+{
+    int klic;
+    float data;
+    while (fscanf(in, "%d %f", &klic, &data) == 2) {
+        if (!bvsVloz(strom, klic, data)) { return false; }
+    }
+
+    return true;
+}
 
 
 /** Vytiskne uživatelské menu*/
@@ -83,11 +105,13 @@ void menu(void)
             "Konec.................................K\n"
             "---------------------------------------\n"
             "Doplnene operace\n"
-            "Ukol 1. xxxxxxxxxxxxxxxxx.............1\n"
-            "Ukol 2. xxxxxxxxxxxxxxxxx.............2\n"
-            "Ukol 3. xxxxxxxxxxxxxxxxx.............3\n"
-            "Ukol 4. xxxxxxxxxxxxxxxxx.............4\n"
-            "Ukol 5. xxxxxxxxxxxxxxxxx.............5\n"
+            "Ukol 1. Vlozeni 10 uzlu...............1\n"
+            "Ukol 2. Vyska stromu..................2\n"
+            "Ukol 3. Vypis preOrder................3\n"
+            "Ukol 4. Vypis postOrder...............4\n"
+            "Ukol 5. Vypis inOrder.................5\n"
+            "Ukol 6. xxxxxxxxxxxxxxxxx.............6\n"
+            "Ukol 7. Nacitani data ze souboru......7\n"
             "\n"
             "Tva volba: "
           );
@@ -109,6 +133,8 @@ char zjistiVolbu(void)
 int main(void)
 {
     Tstrom *strom = bvsInit();
+
+    FILE *in = fopen("data.txt", "r");
 
     char volba;
     int konec = 0;
@@ -138,6 +164,14 @@ int main(void)
 
             case '5': // Úkol 5
                 operace5(strom);
+                break;
+
+            case '6': // Úkol 5
+                operace6(strom);
+                break;
+
+            case '7': // Úkol 5
+                operace7(strom, in);
                 break;
 
 
@@ -194,6 +228,7 @@ int main(void)
         }
     } while (!konec);
 
+    fclose(in);
     bvsZrus(strom);
     return EXIT_SUCCESS;
 }

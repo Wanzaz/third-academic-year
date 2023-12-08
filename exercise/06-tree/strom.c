@@ -244,3 +244,58 @@ void bvsTisk(Tstrom *strom)
         printf("\n");
     }
 }
+
+int _vaha(Tuzel * u)
+{
+    if (u == NULL) { return 0; }
+
+    return 1 + _vaha(u->levy) + _vaha(u->pravy);
+
+}
+
+int bvsPruchodVaha(Tstrom * strom)
+{
+    return _vaha(strom->koren);
+}
+
+void _preOrder(Tuzel * u)
+{
+    if (u == NULL) { return; }
+
+    printf("%d - %f\n", u->klic, u->data);
+    _preOrder(u->levy);
+    _preOrder(u->pravy);
+}
+
+void vypisPreOrder(Tstrom * strom)
+{
+    _preOrder(strom->koren);
+}
+
+void _postOrder(Tuzel * u)
+{
+    if (u == NULL) { return; }
+
+    _postOrder(u->levy);
+    _postOrder(u->pravy);
+    printf("%d - %f\n", u->klic, u->data);
+}
+
+void vypisPostOrder(Tstrom * strom)
+{
+    _postOrder(strom->koren);
+}
+
+void _inOrder(Tuzel * u)
+{
+    if (u == NULL) { return; }
+
+    _inOrder(u->levy);
+    printf("%d - %f\n", u->klic, u->data);
+    _inOrder(u->pravy);
+}
+
+void vypisInOrder(Tstrom * strom)
+{
+    _inOrder(strom->koren);
+}
