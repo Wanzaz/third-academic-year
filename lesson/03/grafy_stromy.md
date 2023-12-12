@@ -18,3 +18,9 @@
 
 ## Orientovany graf
 - maji definovany smer
+
+## Eulerovsky graf
+- Graf, ktery lze cely projit tak, ze kazdou hranou projdeme prave jednou
+
+## Hamiltonovsky draf
+- Graf, ktery lze cely projit tak, ze kazdym uzlem projdeme prave jednou a vratime se do vychoziho uzlu
