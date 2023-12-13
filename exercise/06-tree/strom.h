@@ -25,6 +25,15 @@ typedef struct _tuzel Tuzel;
 /** Struktura reprezentující celý strom. */
 typedef struct _strom Tstrom;
 
+// Tohle uživatel vidět nemusí. Ještě by mi do toho vlezl a něco mi tu poničil.
+struct _tuzel
+{
+    int klic;           //< Klíč pro vyhledávání -- zde celé číslo
+    float data;         //< Data vázaná na klíč -- zde desetinné číslo
+    Tuzel* levy;   //< Ukazatel na levý podstrom
+    Tuzel* pravy;  //< Ukazatel na pravý podstrom
+};
+
 struct _strom
 {
     Tuzel* koren;

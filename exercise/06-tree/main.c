@@ -20,6 +20,7 @@
 
 
                      // natažení rozhraní modulu strom
+#include "SuperTisk.h"
 #include "strom.h"
 
 
@@ -184,7 +185,8 @@ int main(void)
 
             case 'T': // Tisk stromu
                 printf("Aktualni podoba stromu\n");
-                bvsTisk(strom);
+                /* bvsTisk(strom); */
+                SuperTisk(stdout, strom->koren);
                 printf("Pocet uzlu stromu: %d\n", bvsVaha(strom));
                 break;
 
