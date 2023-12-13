@@ -113,19 +113,22 @@ bool _zrusUzel(Tuzel **uzel)
 
     if (pom->levy == NULL) {
         *uzel = pom->pravy;
-            free(pom);
-            return true;
+        free(pom);
+
+        return true;
     }
 
     if (pom->pravy == NULL) {
         *uzel = pom->levy;
-            free(pom);
-            return true;
+        free(pom);
+
+        return true;
     }
 
     if (pom->levy->pravy == NULL) {
         pom->klic = pom->levy->klic;
-            return _zrusUzel(&pom->levy);
+
+        return _zrusUzel(&pom->levy);
     }
 
     pom = pom->levy;
