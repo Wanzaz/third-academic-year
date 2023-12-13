@@ -75,7 +75,8 @@ bool _bvsVloz(Tuzel **u, int klic, float data)
     
     if (pom == NULL) {
         if ((pom = _novyUzel(klic, data)) == NULL) { return false; }
-            *u = pom; // NUTNE!!! pom je lokalni
+
+        *u = pom; // NUTNE!!! pom je lokalni
         return true;
     }
     // nevkladame nahodou duplicitni klic? ne nevkladamae protoze tady si
@@ -83,14 +84,14 @@ bool _bvsVloz(Tuzel **u, int klic, float data)
     //if (klic == pom->klic) return false
     
     // patri v levo nebo pravo
-    if (klic < pom->klic) {
-        return _bvsVloz(&pom->levy, klic, data);
-    } else {
-        return _bvsVloz(&pom->pravy, klic, data);
-    }
+    /* if (klic < pom->klic) { */
+    /*     return _bvsVloz(&pom->levy, klic, data); */
+    /* } else { */
+    /*     return _bvsVloz(&pom->pravy, klic, data); */
+    /* } */
     
     // lepsi zapsani swag
-    //return _bvsVloz(klic < pom->klic ? &pom->levy : &pom->pravy, klic, data);
+    return _bvsVloz(klic < pom->klic ? &pom->levy : &pom->pravy, klic, data);
 }
 
 bool bvsVloz(Tstrom *strom, int klic, float data)
