@@ -27,5 +27,6 @@
 # Heuristika
 - Obecne jde o jakekoli opatreni, slouzici ke zlepseni vypoctu
 - nelze je vymyslet algoritmicky - chce to napady, zkusenosti, kreativni mysleni
+- nebude zkoumat reseni, ketere nema ceny zkoumat dal
 
 
