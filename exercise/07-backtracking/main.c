@@ -9,11 +9,13 @@ typedef struct {
     bool jesikmozprava[15];
 } TSach;
 
-bool jeOhrozena(TSach plocha, char x, char y)
+int pocetReseni = 0;
+
+bool jeOhrozena(TSach *plocha, char x, char y)
 {
-    if (plocha.jevradku[y] ||
-        plocha.jesikmozleva[x + y] ||
-        plocha.jesikmozprava[x - y + 7]) {
+    if (plocha->jevradku[y] ||
+        plocha->jesikmozleva[x + y] ||
+        plocha->jesikmozprava[x - y + 7]) {
 
         return true;
     }
@@ -21,28 +23,28 @@ bool jeOhrozena(TSach plocha, char x, char y)
     return false;
 }
 
-void polozDamu(TSach plocha, char x, char y)
+void polozDamu(TSach *plocha, char x, char y)
 {
     // 0 znamena bez damy
-    plocha.ypozice[x] = y + 1;
+    plocha->ypozice[x] = y + 1;
 
-    plocha.jevradku[y] = true;
+    plocha->jevradku[y] = true;
 
-    plocha.jesikmozleva[x + y] = true;
+    plocha->jesikmozleva[x + y] = true;
 
-    plocha.jesikmozprava[x - y + 7] = true;
+    plocha->jesikmozprava[x - y + 7] = true;
 }
 
-void odeberDamu(TSach plocha, char x, char y)
+void odeberDamu(TSach *plocha, char x, char y)
 {
     // 0 znamena bez damy
-    plocha.ypozice[x] = 0;
+    plocha->ypozice[x] = 0;
 
-    plocha.jevradku[y] = false;
+    plocha->jevradku[y] = false;
 
-    plocha.jesikmozleva[x + y] = false;
+    plocha->jesikmozleva[x + y] = false;
 
-    plocha.jesikmozprava[x - y + 7] = false;
+    plocha->jesikmozprava[x - y + 7] = false;
 }
 
 void vykresliReseni(TSach plocha, FILE *f)
@@ -66,14 +68,15 @@ void vykresliReseni(TSach plocha, FILE *f)
     **/
 }
 
-void zkusSloupec(TSach plocha, char x)
+void zkusSloupec(TSach *plocha, char x)
 {
     for (int y = 0 ; y < 8; y++) {
         if (!jeOhrozena(plocha, x, y)) {
             polozDamu(plocha, x, y);
 
             if (x == 7) {
-                vykresliReseni(plocha, stdout);
+                pocetReseni++;
+                vykresliReseni(*plocha, stdout);
                 printf("\n");
             } else {
                 zkusSloupec(plocha, x + 1);
@@ -86,14 +89,15 @@ void zkusSloupec(TSach plocha, char x)
 
 int main(int argc, char *argv[])
 {
-    TSach plocha = {
-        .ypozice = {0},
-        .jevradku = {false},
-        .jesikmozleva = {false},
-        .jesikmozprava = {false},
+    TSach *plocha = &(TSach) {
+        .ypozice = {0},     
+        .jevradku = false, 
+        .jesikmozleva = false,
+        .jesikmozprava = false,
     };
 
     zkusSloupec(plocha, 0);
+    printf("Pocet najitych reseni: %d\n", pocetReseni);
 
     return 0;
 }
