@@ -3,7 +3,7 @@
 ## Programovaci Paradigma
 - Imperativni - C, Pascal
 - Funkcionalni - Lisp, Haskel
-- Dalsi
+- Dalsi (Logicke paradigma - Prolog, Paralelni paradigma - Java, Rust, Go, SmallTalk)
 
 ## Vztah stroje, jazyka a programu
 - Programovaci jazyk rozsiruje moznosti stroje
@@ -18,4 +18,18 @@
 - C++, Java - imperativni (rozloz problem na podproblemy), objektove
 - Lisp, Scheme - Funkcionalni, objektove (+ nektere imperativni rysy)
 
+## Strukturovane prikazy
+- strukturovane prikazy a strukturovana data (podminky, cykly)
+- Vyhybat se prikazu **GOTO** (zpusobuje desive chyby)
 
+## Strukturovane programovani
+- Program = datove struktury + algoritmy
+
+## Funkcionalni programovani
+- vypocet je zalozen na postupnem aplikovani funkci
+- Obrovsky vyznam ma rekurze (Rekurze je Turingovsky kompletni)
+
+
+## Objektove orientovane paradigma
+- Objekty realneho sveta, ktere si spolu povidaji (napr. predmety, osoby, udalosti)
+- Program = Objekty + zpravy
