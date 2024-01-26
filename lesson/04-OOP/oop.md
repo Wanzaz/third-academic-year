@@ -56,3 +56,10 @@
     * casem proverene navrhy strktur trid
     * opakovane pouzivane v ruznych realnych projektech
 - Systemovy analytik, softwarovy architekt
+
+## Navrh programu
+- "Neptej se nejdirve CO ma program delat, ptej se S CIM to ma delat"
+- **Zahrnuje**: analyzu, navrh, implementaci programu
+- **Modeluje**: objekty realneho (nebo virtualniho) sveta, jejich vzajemne vazby a vztahy, jejich vzajemne interakce
+- **Program je simulaci tohoto modelu
+- Program vymyslime jako divadelni hru (nezaciname s scenami, ale z vrchu)
