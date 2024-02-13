@@ -63,3 +63,25 @@
 - **Modeluje**: objekty realneho (nebo virtualniho) sveta, jejich vzajemne vazby a vztahy, jejich vzajemne interakce
 - **Program je simulaci tohoto modelu
 - Program vymyslime jako divadelni hru (nezaciname s scenami, ale z vrchu)
+
+...
+
+# Dedicnost
+- jen jednoducha dedicnost (trida muze dedit jen z jednoho predka)
+- sdileni kodu
+- predek - modul (obecny)
+- potomek - specificke chovani
+
+## Konstruktor
+- nejdrive se ve kontruktoru dela PREDEK a pak POTOMEK
+
+# Polymorfismus
+- v Jave - typovy polymorfismus
+- udelam zvire(predka), ale hodim tam psa(potomka)
+- nahrazeni switch case za for cyklus (ROZSIRITELNOST kodu v budoucnu)
+
+## Tabulka virtualnich metod
+- ma v ni (ukazatele na) virtualni metody sve a svych predku
+- jsou serazeny smerem od implementaci v potomcich k implementacim v predcich
+- virtualni metoda se pri volani vyhledava v tabulce virtualnich metod objektu
+    - proto Zvire b zavola metodu ozviSe, ktera vypise "Haf!", ne "Mmm?"
