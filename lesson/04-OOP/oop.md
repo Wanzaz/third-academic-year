@@ -85,3 +85,13 @@
 - jsou serazeny smerem od implementaci v potomcich k implementacim v predcich
 - virtualni metoda se pri volani vyhledava v tabulce virtualnich metod objektu
     - proto Zvire b zavola metodu ozviSe, ktera vypise "Haf!", ne "Mmm?"
+
+## Delegovani a Kompozice
+- 
+
+## Atomizace
+- jednoduche tridy
+- jen jedna akce v jeden cas
+- metoda pro jednu konkretni cinnost
+- zvysuje kvalitu navrhu (efektivitu etc.)
+- 
