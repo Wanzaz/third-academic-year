@@ -1,0 +1,4 @@
+Auto 5 1000 parek
+Motorka 1 50 rizek
+Auto 2 500 chlebak
+Motorka 1 100 banger
